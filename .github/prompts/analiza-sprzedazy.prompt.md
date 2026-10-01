@@ -39,3 +39,4 @@ Podaj w tej kolejności:
 5. **Użyte metryki:** lista z krótką definicją ze słownika.
 6. **Weryfikacja:** wynik porównania z widokiem i testów spójności.
 7. **Podsumowanie do e-maila:** 3–5 krótkich punktów z wnioskami, bez żargonu SQL, gotowych do wklejenia do wiadomości.
+8. **Otwarte pytania i sugestie:** nierozstrzygnięte kwestie (np. niejasne definicje, braki lub rozbieżności w danych, założenia przyjęte bez potwierdzenia) oraz propozycje dalszych analiz lub usprawnień.
