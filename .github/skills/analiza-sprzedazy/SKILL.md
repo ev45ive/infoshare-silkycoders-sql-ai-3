@@ -2,6 +2,8 @@
 name: analiza-sprzedazy
 description: "Analiza sprzedaży w hurtowni RetailDW (mssql): pojedynczy okres, porównanie okresów/trend WoW/MoM, przekroje po kanałach/kategoriach/sklepach/SKU, diagnoza anomalii (brak towaru vs brak popytu). Use when: analiza sprzedaży, sprzedaż z zeszłego tygodnia, porównanie WoW/MoM, trend sprzedaży, podział na kanały lub kategorie, dlaczego sprzedaż spadła/wzrosła."
 argument-hint: "opisz co chcesz: okres, przekrój, miara, kategoria/produkt — albo zostaw puste, zapytam o tryb"
+user-invocable: true
+disable-model-invocation: false
 ---
 
 # Analiza Sprzedaży — RetailDW

@@ -64,6 +64,21 @@ Zwroty obniżają marżę okresu **przyjęcia zwrotu**, nie okresu pierwotnej sp
 
 Stan jest **migawką**, więc nie sumujemy stanów z kolejnych dni. Dostępność obejmuje SKU obecne w feedzie zapasu, nie cały katalog `DimProduct`. Wartość zapasu używa bieżącego kosztu z wymiaru, więc nie jest historyczną wyceną księgową. Sell-through liczymy w obrębie jednego sezonu, zestawiając sprzedaż i stan z tego samego zakresu; feed zapasu obejmuje tylko bieżący sezon.
 
+### Uwaga: Dwie metryki dostępności
+
+Dostępność można liczyć na dwa sposoby, dające **różne wyniki** dla tego samego okresu:
+
+| Metryka | Formuła | Źródło | Zastosowanie |
+| --- | --- | --- | --- |
+| **Dostępność niezważona** (por. kategoriach) | `AVG(AvailabilityPct per categoria)` | `reporting.vw_StockAvailability` | Sprawdzenie równowagi dostępu do kategorii |
+| **Dostępność ważona** (rzeczywisty zapas) | `SUM(SKU dostępne) / COUNT(wszystkie SKU)` | `FactInventoryDaily` | Odsetek towaru dostępnego dla klienta |
+
+**Przykład:** Jeśli Kurtki mają 97,5% dostępności (duża kategoria, 24% katalog), a pozostałe kategorie 100% (mniejsze):
+- Metoda niezważona: `(97.5 + 100 + 100 + 100 + 100 + 100 + 100) / 7 = 99.6%`
+- Metoda ważona: `(Liczba dostępnych SKU) / (Wszystkie SKU) = 99.2%`
+
+**Dla raportów biznesowych:** Zawsze określ którą metodę używasz. Jeśli liczymy z `FactInventoryDaily` bezpośrednio, wynik będzie ważony wielkością kategorii; jeśli z widoku `vw_StockAvailability` uśrednionego po kategoriach, będzie niezważony.
+
 ## Zwroty
 
 | Metryka | Definicja | Źródło |

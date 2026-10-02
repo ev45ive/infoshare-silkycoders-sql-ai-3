@@ -17,4 +17,15 @@ W tabelach `src.*` kolumna `SourceFile` wskazuje plik, z którego pochodzi wiers
 
 Kolumna `SourceFile` w strefie wejściowej wskazuje pochodzenie wiersza. Sprawdź, na których dalszych warstwach ta informacja pozostaje dostępna. Przebieg ładowania, w tym status oraz liczbę wierszy odczytanych, załadowanych i odrzuconych, zapisuje `dbo.LoadLog`.
 
+## Ładowanie zapasu
+
+`etl.LoadInventory` czyta stany z feedu magazynu (WMS) i buduje `FactInventoryDaily`. **Istotne:** Jeśli dany sklep nie raportuje zapasu w danym dniu (awaria WMS, inwentaryzacja, błąd transmisji), ten dzień nie pojawia się w `FactInventoryDaily` dla tego sklepu.
+
+Przy liczeniu dostępności za okres (np. "miesiąc"), zawsze sprawdzić:
+- Czy wszystkie sklepy raportują każdy dzień (`COUNT(DISTINCT DateKey)` powinna być równa liczbie dni w okresie)?
+- Czy w mianowniku używasz tylko dni dostępnych danych (`FactInventoryDaily`), czy wszystkich dni kalendarzowych?
+- Czy liczysz dostępność ważoną (rzeczywisty procent towaru) czy niezważoną (równa waga kategorii)? — patrz [słownik metryk](slownik-metryk.md)
+
+Przykład: Jeśli brakuje 3 dni dla jednego sklepu, raport "dostępność w czerwcu" może być niedokładny, chyba że wyraźnie stwierdzisz "za dni z dostępnymi danymi".
+
 Pełny model kolumn i powiązań sprawdź w udostępnionym schemacie XML. Bieżące definicje metryk są w [słowniku metryk](slownik-metryk.md).
