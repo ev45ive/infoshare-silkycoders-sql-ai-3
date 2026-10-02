@@ -1,0 +1,59 @@
+{
+  "sheets": [
+    {
+      "name": "Podsumowanie",
+      "position": 0,
+      "columns": [
+        {
+          "name": "Kanał",
+          "width": 15
+        },
+        {
+          "name": "Sprzedaż netto (PLN)",
+          "width": 20,
+          "format": "#,##0.00"
+        },
+        {
+          "name": "Sztuki",
+          "width": 12,
+          "format": "#,##0"
+        },
+        {
+          "name": "Transakcje",
+          "width": 14,
+          "format": "#,##0"
+        },
+        {
+          "name": "WoW %",
+          "width": 12,
+          "format": "0.00\"%\""
+        },
+        {
+          "name": "YoY %",
+          "width": 12,
+          "format": "0.00\"%\""
+        }
+      ],
+      "header_style": {
+        "bg_color": "1F4E78",
+        "font_color": "FFFFFF",
+        "bold": true
+      }
+    },
+    {
+      "name": "Szczegóły",
+      "position": 1,
+      "description": "Zarezerwowano na drill-down po kategoriach/sklepach"
+    },
+    {
+      "name": "Trends",
+      "position": 2,
+      "description": "Zarezerwowano na analizę trendu N tygodni"
+    }
+  ],
+  "metadata": {
+    "title": "Raport sprzedaży Nordvik",
+    "author": "RetailDW Skill",
+    "created": "auto"
+  }
+}

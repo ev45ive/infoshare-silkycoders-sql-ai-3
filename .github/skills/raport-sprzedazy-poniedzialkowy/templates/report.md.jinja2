@@ -1,0 +1,52 @@
+# Raport sprzedaży — **{{ period }}**
+
+{% if status != 'ready' %}
+**Status:** ⚠️ RAPORT NIEKOMPLETNY — brakuje danych
+{% else %}
+**Status:** ✅ Raport gotowy — tydzień pełny, dane kompletne.
+{% endif %}
+
+---
+
+## Podsumowanie — Sprzedaż netto (PLN)
+
+| Kanał | W38 | W37 | Zmiana WoW | YoY | Zmiana YoY |
+|-------|----:|----:|---:|----:|---:|
+{% for channel in ['ONLINE', 'STORE', 'RAZEM'] %}
+{% set m = metrics[channel] %}
+{% set c = changes[channel] %}
+| **{{ channel }}** | {{ "{:,.0f}".format(m.NetAmount) }} | {{ "{:,.0f}".format(m.PrevWeekNet) }} | {{ "{:+.1f}%".format(c.WoW_pct) }} | {{ "{:,.0f}".format(m.YoYNet) }} | {{ "{:+.1f}%".format(c.YoY_pct) }}{% if c.IsSignificant %} ⚠️{% endif %} |
+{% endfor %}
+
+### Sztuki i transakcje
+
+| Kanał | Sztuki W38 | Sztuki W37 | Zmiana | Transakcje W38 | Transakcje W37 | Zmiana |
+|-------|----:|----:|---:|----:|----:|---:|
+{% for channel in ['ONLINE', 'STORE', 'RAZEM'] %}
+{% set m = metrics[channel] %}
+{% set c = changes[channel] %}
+{% set qty_change = ((m.Quantity - (m.NetAmount / m.Quantity if m.Quantity > 0 else 0)) / (m.NetAmount / m.Quantity if m.Quantity > 0 else 0) * 100) if m.Quantity > 0 else 0 %}
+| **{{ channel }}** | {{ m.Quantity }} | - | - | {{ m.Transactions }} | - | - |
+{% endfor %}
+
+---
+
+## Wstępna interpretacja
+
+{% if interpretation %}
+{% for point in interpretation %}
+- {{ point }}
+{% endfor %}
+{% else %}
+- Brak istotnych zmian
+{% endif %}
+
+---
+
+## Źródło danych i założenia
+
+{% for item in data_source %}
+- {{ item }}
+{% endfor %}
+
+**Wygenerowano:** {{ generated_at }}
