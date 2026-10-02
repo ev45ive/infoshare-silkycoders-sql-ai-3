@@ -88,6 +88,7 @@ korzystasz.
 | NIGDY NIE CZYTAJ PLIKÓW Z **`RetailDW/Scripts/`** | **WDROŻENIE INFRASTRUKTURY.** Skrypty wdrożeniowe, generowanie testowych danych syntetycznych, przygotowanie środowiska lokalnego. Nie opisują biznesowego znaczenia danych. Traktuj tabele `src.*` jak to, co przysłał system źródłowy — NIGDY nie czytaj, skąd się wzięły. |
 | NIGDY NIE CZYTAJ PLIKÓW Z`zgloszenia/` | Przychodzące zgłoszenia biznesowe i materiały robocze analityka. |
 | NIGDY NIE CZYTAJ PLIKÓW Z`notatki/` | Prywatne notatki użytkownika, poza zakresem analizy. |
+|  NIE CZYTAJ PLIKÓW Z `./docs/ai-sessions/` | Zapis plików przekazania sesji - czytaj tylko jeśli użytkownik przekaze plik bezpośrednio  |
 
 
 # Zasady dodatkowe:
